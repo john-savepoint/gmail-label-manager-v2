@@ -1,0 +1,72 @@
+{
+  "name": "gmail-label-manager-monorepo",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Gmail Label Manager Chrome Extension - Monorepo Root",
+  "workspaces": [
+    "v1-legacy",
+    "v2-gmail-label-manager"
+  ],
+  "scripts": {
+    "prepare": "husky",
+    "dev:v1": "npm run dev --workspace=v1-legacy",
+    "dev:v2": "npm run dev --workspace=v2-gmail-label-manager",
+    "build:v1": "npm run build --workspace=v1-legacy",
+    "build:v2": "npm run build --workspace=v2-gmail-label-manager",
+    "build:all": "npm run build:v1 && npm run build:v2",
+    "lint:v1": "npm run lint --workspace=v1-legacy",
+    "lint:v2": "npm run lint --workspace=v2-gmail-label-manager",
+    "test": "echo 'No tests at root level'",
+    "changeset": "changeset",
+    "changeset:add": "changeset add",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish",
+    "release": "npm run build:all && changeset publish",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\" --ignore-path .gitignore",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\" --ignore-path .gitignore",
+    "ai:commit": "node scripts/ai-commit.js",
+    "ai:pr": "node scripts/ai-pr.js",
+    "sprint:report": "node scripts/sprint-analytics.js",
+    "deps:check": "npm audit --workspaces",
+    "deps:update": "npm update --workspaces"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^10.1.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
+    "semantic-release": "^24.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/save-point-au/gmail-label-manager-v2.git"
+  },
+  "keywords": [
+    "gmail",
+    "chrome-extension",
+    "label-manager",
+    "productivity",
+    "email",
+    "workflow"
+  ],
+  "author": "Save Point Pty Ltd",
+  "license": "MIT"
+}

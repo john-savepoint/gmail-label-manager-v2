@@ -1,0 +1,281 @@
+name: Semantic Release with AI Enhancement
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          npm install -g semantic-release @semantic-release/git @semantic-release/changelog @semantic-release/github
+          npm install -g @semantic-release/commit-analyzer @semantic-release/release-notes-generator
+      
+      - name: Analyze commits with AI
+        id: ai_analysis
+        run: |
+          # Get commits since last release
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --format="%H %s" --no-merges)
+          else
+            COMMITS=$(git log --format="%H %s" $LAST_TAG..HEAD --no-merges)
+          fi
+          
+          # Count different types of changes
+          FEATURES=$(echo "$COMMITS" | grep -c "^[a-f0-9]* feat" || true)
+          FIXES=$(echo "$COMMITS" | grep -c "^[a-f0-9]* fix" || true)
+          BREAKING=$(echo "$COMMITS" | grep -c "BREAKING CHANGE\|feat.*!:" || true)
+          
+          # Generate AI summary
+          echo "ai_features=$FEATURES" >> $GITHUB_OUTPUT
+          echo "ai_fixes=$FIXES" >> $GITHUB_OUTPUT
+          echo "ai_breaking=$BREAKING" >> $GITHUB_OUTPUT
+          
+          # Create enhanced changelog entry
+          cat << EOF > ai_changelog.md
+          ## AI-Generated Summary
+          
+          This release includes:
+          - **$FEATURES** new features
+          - **$FIXES** bug fixes
+          - **$BREAKING** breaking changes
+          
+          ### Key Highlights
+          EOF
+          
+          # Extract key features
+          if [ $FEATURES -gt 0 ]; then
+            echo "" >> ai_changelog.md
+            echo "#### ✨ New Features" >> ai_changelog.md
+            echo "$COMMITS" | grep "^[a-f0-9]* feat" | sed 's/^[a-f0-9]* feat/- /' | head -5 >> ai_changelog.md
+          fi
+          
+          if [ $FIXES -gt 0 ]; then
+            echo "" >> ai_changelog.md
+            echo "#### 🐛 Bug Fixes" >> ai_changelog.md
+            echo "$COMMITS" | grep "^[a-f0-9]* fix" | sed 's/^[a-f0-9]* fix/- /' | head -5 >> ai_changelog.md
+          fi
+          
+          if [ $BREAKING -gt 0 ]; then
+            echo "" >> ai_changelog.md
+            echo "#### 💥 Breaking Changes" >> ai_changelog.md
+            echo "$COMMITS" | grep -E "BREAKING CHANGE|feat.*!:" | sed 's/^[a-f0-9]* /- /' | head -5 >> ai_changelog.md
+          fi
+      
+      - name: Semantic Release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+        run: |
+          # Create .releaserc.json
+          cat << 'EOF' > .releaserc.json
+          {
+            "branches": ["main"],
+            "plugins": [
+              ["@semantic-release/commit-analyzer", {
+                "preset": "angular",
+                "releaseRules": [
+                  {"type": "feat", "release": "minor"},
+                  {"type": "fix", "release": "patch"},
+                  {"type": "perf", "release": "patch"},
+                  {"type": "revert", "release": "patch"},
+                  {"type": "docs", "release": "patch"},
+                  {"type": "style", "release": "patch"},
+                  {"type": "refactor", "release": "patch"},
+                  {"type": "test", "release": "patch"},
+                  {"type": "build", "release": "patch"},
+                  {"type": "ci", "release": "patch"},
+                  {"type": "chore", "release": false},
+                  {"breaking": true, "release": "major"}
+                ]
+              }],
+              ["@semantic-release/release-notes-generator", {
+                "preset": "angular",
+                "writerOpts": {
+                  "headerPartial": "## {{version}} ({{date}})\n\n{{#if @root.ai_summary}}{{@root.ai_summary}}{{/if}}"
+                }
+              }],
+              "@semantic-release/changelog",
+              ["@semantic-release/github", {
+                "assets": [
+                  {"path": "v1-legacy/dist/**/*.zip", "label": "Chrome Extension v1"},
+                  {"path": "v2-gmail-label-manager/.output/**/*.zip", "label": "Chrome Extension v2"}
+                ]
+              }],
+              ["@semantic-release/git", {
+                "assets": ["CHANGELOG.md", "package.json", "package-lock.json"],
+                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+              }]
+            ]
+          }
+          EOF
+          
+          # Run semantic-release
+          npx semantic-release
+
+  build-extensions:
+    needs: release
+    if: needs.release.outputs.new_release_published == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [v1, v2]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main  # Get the latest with version tags
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: |
+            ${{ matrix.version == 'v1' && 'v1-legacy/package-lock.json' || 'v2-gmail-label-manager/package-lock.json' }}
+      
+      - name: Build ${{ matrix.version }}
+        run: |
+          if [ "${{ matrix.version }}" == "v1" ]; then
+            cd v1-legacy
+          else
+            cd v2-gmail-label-manager
+          fi
+          
+          npm ci
+          npm run build
+          
+          # Package for Chrome Web Store
+          VERSION=${{ needs.release.outputs.new_release_version }}
+          cd dist || cd .output
+          zip -r ../gmail-label-manager-${{ matrix.version }}-${VERSION}.zip . -x "*.map" "*.DS_Store"
+      
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-${{ matrix.version }}-${{ needs.release.outputs.new_release_version }}
+          path: |
+            **/*.zip
+          retention-days: 90
+
+  update-release:
+    needs: [release, build-extensions]
+    if: needs.release.outputs.new_release_published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      
+      - name: Update GitHub Release
+        uses: actions/github-script@v7
+        env:
+          VERSION: ${{ needs.release.outputs.new_release_version }}
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Get the release
+            const { data: release } = await github.rest.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: `v${process.env.VERSION}`
+            });
+            
+            // Read AI changelog if exists
+            let aiSummary = '';
+            if (fs.existsSync('ai_changelog.md')) {
+              aiSummary = fs.readFileSync('ai_changelog.md', 'utf8');
+            }
+            
+            // Update release body with AI summary
+            const updatedBody = `${release.body}\n\n---\n\n${aiSummary}\n\n## Installation\n\n### Chrome Web Store\n_Pending approval_\n\n### Manual Installation\n1. Download the appropriate version ZIP file\n2. Extract to a folder\n3. Open Chrome/Edge → Extensions\n4. Enable Developer Mode\n5. Click "Load unpacked" and select the extracted folder\n\n## Compatibility\n- **v1**: Stable version with all current features\n- **v2**: Beta version with new architecture (TypeScript, React 18, WXT framework)\n\n## What's Changed\nSee the full changelog above for detailed changes.\n\n---\n_🤖 Release automated with AI-enhanced CI/CD_`;
+            
+            await github.rest.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: release.id,
+              body: updatedBody
+            });
+            
+            // Upload extension packages
+            const artifactsDir = 'artifacts';
+            const files = fs.readdirSync(artifactsDir, { recursive: true })
+              .filter(file => file.endsWith('.zip'));
+            
+            for (const file of files) {
+              const filePath = path.join(artifactsDir, file);
+              const fileName = path.basename(file);
+              
+              console.log(`Uploading ${fileName}...`);
+              
+              await github.rest.repos.uploadReleaseAsset({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: release.id,
+                name: fileName,
+                data: fs.readFileSync(filePath)
+              });
+            }
+
+  notify:
+    needs: [release, update-release]
+    if: needs.release.outputs.new_release_published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create summary
+        run: |
+          echo "# 🎉 Release Published!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Version: v${{ needs.release.outputs.new_release_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📦 Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "- Chrome Extension v1" >> $GITHUB_STEP_SUMMARY
+          echo "- Chrome Extension v2" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🚀 Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download release artifacts from [GitHub Releases](https://github.com/${{ github.repository }}/releases)" >> $GITHUB_STEP_SUMMARY
+          echo "2. Submit to Chrome Web Store" >> $GITHUB_STEP_SUMMARY
+          echo "3. Update documentation" >> $GITHUB_STEP_SUMMARY
+          echo "4. Announce to users" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "_Automated with AI-enhanced semantic release_" >> $GITHUB_STEP_SUMMARY

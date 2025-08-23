@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+# Run lint-staged if available
+if [ -f "package.json" ] && grep -q "lint-staged" package.json; then
+  npx lint-staged
+fi
+
+# Run basic checks
+echo "🔍 Running pre-commit checks..."
+
+# Check for console.log statements
+if git diff --cached --name-only | xargs grep -l "console.log" 2>/dev/null; then
+  echo "⚠️  Warning: console.log statements found in staged files"
+  echo "Consider removing them before committing to production"
+fi
+
+# Check for TODO/FIXME comments
+if git diff --cached --name-only | xargs grep -l "TODO\|FIXME" 2>/dev/null; then
+  echo "📝 Note: TODO/FIXME comments found in staged files"
+  echo "Consider creating issues for them"
+fi
+
+echo "✅ Pre-commit checks complete"

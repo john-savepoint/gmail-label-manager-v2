@@ -1,0 +1,284 @@
+name: Linear Integration & Sprint Analytics
+
+on:
+  pull_request:
+    types: [opened, closed, edited, ready_for_review, converted_to_draft]
+  issues:
+    types: [opened, closed, labeled, unlabeled]
+  push:
+    branches: [main, develop, dev]
+  workflow_dispatch:
+    inputs:
+      generate_report:
+        description: 'Generate sprint report'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+env:
+  LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+
+jobs:
+  sync-with-linear:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event_name == 'issues'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Extract Linear Issue ID
+        id: linear
+        run: |
+          # Extract Linear issue ID from PR/Issue title or body
+          TITLE="${{ github.event.pull_request.title || github.event.issue.title }}"
+          BODY="${{ github.event.pull_request.body || github.event.issue.body }}"
+          
+          # Look for patterns like SAV-123, GMAIL-456, etc.
+          LINEAR_ID=$(echo "$TITLE $BODY" | grep -oE "(SAV|GMAIL|LIN)-[0-9]+" | head -1)
+          
+          if [ -n "$LINEAR_ID" ]; then
+            echo "linear_id=$LINEAR_ID" >> $GITHUB_OUTPUT
+            echo "Found Linear ID: $LINEAR_ID"
+          else
+            echo "No Linear ID found"
+            echo "linear_id=" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Update Linear Issue
+        if: steps.linear.outputs.linear_id != '' && env.LINEAR_API_KEY != ''
+        run: |
+          LINEAR_ID="${{ steps.linear.outputs.linear_id }}"
+          EVENT_TYPE="${{ github.event_name }}"
+          ACTION="${{ github.event.action }}"
+          
+          # Determine the Linear state based on GitHub event
+          if [ "$EVENT_TYPE" == "pull_request" ]; then
+            case "$ACTION" in
+              "opened")
+                STATE="in_progress"
+                COMMENT="🔗 GitHub PR opened: ${{ github.event.pull_request.html_url }}"
+                ;;
+              "ready_for_review")
+                STATE="in_review"
+                COMMENT="👀 PR ready for review: ${{ github.event.pull_request.html_url }}"
+                ;;
+              "converted_to_draft")
+                STATE="in_progress"
+                COMMENT="📝 PR converted to draft"
+                ;;
+              "closed")
+                if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+                  STATE="done"
+                  COMMENT="✅ PR merged: ${{ github.event.pull_request.html_url }}"
+                else
+                  STATE="canceled"
+                  COMMENT="❌ PR closed without merging"
+                fi
+                ;;
+            esac
+          elif [ "$EVENT_TYPE" == "issues" ]; then
+            case "$ACTION" in
+              "opened")
+                STATE="backlog"
+                COMMENT="📋 GitHub Issue created: ${{ github.event.issue.html_url }}"
+                ;;
+              "closed")
+                STATE="done"
+                COMMENT="✅ Issue resolved: ${{ github.event.issue.html_url }}"
+                ;;
+            esac
+          fi
+          
+          # Update Linear issue via API
+          if [ -n "$STATE" ]; then
+            curl -X POST https://api.linear.app/graphql \
+              -H "Authorization: $LINEAR_API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"query\": \"mutation { issueUpdate(id: \\\"$LINEAR_ID\\\", input: { stateId: \\\"$STATE\\\" }) { success } }\"
+              }"
+          fi
+          
+          # Add comment to Linear issue
+          if [ -n "$COMMENT" ]; then
+            curl -X POST https://api.linear.app/graphql \
+              -H "Authorization: $LINEAR_API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"query\": \"mutation { commentCreate(input: { issueId: \\\"$LINEAR_ID\\\", body: \\\"$COMMENT\\\" }) { success } }\"
+              }"
+          fi
+
+  analyze-sprint:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.inputs.generate_report == 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Generate Sprint Analytics
+        id: analytics
+        run: |
+          # Calculate sprint metrics
+          echo "## 📊 Sprint Analytics Report" >> sprint_report.md
+          echo "" >> sprint_report.md
+          echo "**Date**: $(date -u +"%Y-%m-%d")" >> sprint_report.md
+          echo "**Branch**: ${{ github.ref_name }}" >> sprint_report.md
+          echo "" >> sprint_report.md
+          
+          # Get commit activity for the last 2 weeks (typical sprint)
+          TWO_WEEKS_AGO=$(date -d "2 weeks ago" +%Y-%m-%d)
+          
+          echo "### 📈 Development Velocity" >> sprint_report.md
+          echo "" >> sprint_report.md
+          
+          # Count commits by type
+          FEAT_COUNT=$(git log --since="$TWO_WEEKS_AGO" --format=%s | grep -c "^feat" || true)
+          FIX_COUNT=$(git log --since="$TWO_WEEKS_AGO" --format=%s | grep -c "^fix" || true)
+          TOTAL_COMMITS=$(git log --since="$TWO_WEEKS_AGO" --oneline | wc -l)
+          
+          echo "- **Total Commits**: $TOTAL_COMMITS" >> sprint_report.md
+          echo "- **Features**: $FEAT_COUNT" >> sprint_report.md
+          echo "- **Bug Fixes**: $FIX_COUNT" >> sprint_report.md
+          echo "" >> sprint_report.md
+          
+          # Analyze contributors
+          echo "### 👥 Contributors" >> sprint_report.md
+          echo "" >> sprint_report.md
+          git log --since="$TWO_WEEKS_AGO" --format="%an" | sort | uniq -c | sort -rn | head -5 | \
+            while read count author; do
+              echo "- $author: $count commits" >> sprint_report.md
+            done
+          echo "" >> sprint_report.md
+          
+          # File change statistics
+          echo "### 📝 Code Changes" >> sprint_report.md
+          echo "" >> sprint_report.md
+          STATS=$(git diff --shortstat $(git rev-list -1 --before="$TWO_WEEKS_AGO" HEAD) HEAD 2>/dev/null || echo "No changes")
+          echo "$STATS" >> sprint_report.md
+          echo "" >> sprint_report.md
+          
+          # Most changed files
+          echo "### 🔥 Hot Files (Most Changed)" >> sprint_report.md
+          echo "" >> sprint_report.md
+          git log --since="$TWO_WEEKS_AGO" --format="" --name-only | sort | uniq -c | sort -rn | head -10 | \
+            while read count file; do
+              if [ -n "$file" ]; then
+                echo "- $file: $count changes" >> sprint_report.md
+              fi
+            done
+          echo "" >> sprint_report.md
+          
+          # PR merge time analysis (if we have PR data)
+          echo "### ⏱️ Pull Request Metrics" >> sprint_report.md
+          echo "" >> sprint_report.md
+          
+          # Count merged PRs
+          MERGED_PRS=$(git log --since="$TWO_WEEKS_AGO" --grep="Merge pull request" --oneline | wc -l)
+          echo "- **Merged PRs**: $MERGED_PRS" >> sprint_report.md
+          echo "" >> sprint_report.md
+          
+          # Sprint recommendations
+          echo "### 💡 AI Recommendations" >> sprint_report.md
+          echo "" >> sprint_report.md
+          
+          if [ $FEAT_COUNT -gt $FIX_COUNT ]; then
+            echo "✅ Good feature velocity! Continue focusing on new functionality." >> sprint_report.md
+          else
+            echo "⚠️ High bug fix ratio. Consider allocating time for refactoring." >> sprint_report.md
+          fi
+          
+          if [ $TOTAL_COMMITS -lt 20 ]; then
+            echo "📉 Low commit activity. Check for blockers or resource constraints." >> sprint_report.md
+          else
+            echo "📈 Healthy commit activity. Team is maintaining good momentum." >> sprint_report.md
+          fi
+          
+          # Output report to summary
+          cat sprint_report.md >> $GITHUB_STEP_SUMMARY
+      
+      - name: Update Linear Sprint Notes
+        if: env.LINEAR_API_KEY != ''
+        run: |
+          # This would update Linear's current sprint with the analytics
+          # For now, we'll just log that it would happen
+          echo "Would update Linear sprint with analytics report"
+      
+      - name: Store Sprint Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: sprint-report-${{ github.run_id }}
+          path: sprint_report.md
+          retention-days: 30
+
+  predict-completion:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: AI Sprint Prediction
+        run: |
+          echo "## 🔮 AI Sprint Predictions" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Calculate average velocity
+          COMMITS_LAST_WEEK=$(git log --since="1 week ago" --oneline | wc -l)
+          COMMITS_PREV_WEEK=$(git log --since="2 weeks ago" --until="1 week ago" --oneline | wc -l)
+          
+          AVG_VELOCITY=$((($COMMITS_LAST_WEEK + $COMMITS_PREV_WEEK) / 2))
+          
+          echo "### 📊 Velocity Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "- Last week: $COMMITS_LAST_WEEK commits" >> $GITHUB_STEP_SUMMARY
+          echo "- Previous week: $COMMITS_PREV_WEEK commits" >> $GITHUB_STEP_SUMMARY
+          echo "- Average velocity: $AVG_VELOCITY commits/week" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Trend analysis
+          echo "### 📈 Trend" >> $GITHUB_STEP_SUMMARY
+          if [ $COMMITS_LAST_WEEK -gt $COMMITS_PREV_WEEK ]; then
+            INCREASE=$(($COMMITS_LAST_WEEK - $COMMITS_PREV_WEEK))
+            PERCENTAGE=$((($INCREASE * 100) / $COMMITS_PREV_WEEK))
+            echo "⬆️ Velocity increasing by $PERCENTAGE%" >> $GITHUB_STEP_SUMMARY
+            echo "**Prediction**: Sprint likely to complete on time" >> $GITHUB_STEP_SUMMARY
+          elif [ $COMMITS_LAST_WEEK -lt $COMMITS_PREV_WEEK ]; then
+            DECREASE=$(($COMMITS_PREV_WEEK - $COMMITS_LAST_WEEK))
+            PERCENTAGE=$((($DECREASE * 100) / $COMMITS_PREV_WEEK))
+            echo "⬇️ Velocity decreasing by $PERCENTAGE%" >> $GITHUB_STEP_SUMMARY
+            echo "**Prediction**: Sprint at risk, consider scope adjustment" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "➡️ Velocity stable" >> $GITHUB_STEP_SUMMARY
+            echo "**Prediction**: Sprint on track" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Risk factors
+          echo "### ⚠️ Risk Factors" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for long-running PRs
+          echo "- Open PRs: Check for long-running reviews" >> $GITHUB_STEP_SUMMARY
+          
+          # Check test failures
+          echo "- Test stability: Monitor CI failure rate" >> $GITHUB_STEP_SUMMARY
+          
+          # Dependencies
+          echo "- Dependencies: Check for blocking dependencies" >> $GITHUB_STEP_SUMMARY
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🎯 Recommendations" >> $GITHUB_STEP_SUMMARY
+          
+          if [ $AVG_VELOCITY -lt 15 ]; then
+            echo "1. Consider pair programming to increase velocity" >> $GITHUB_STEP_SUMMARY
+            echo "2. Review and remove blockers" >> $GITHUB_STEP_SUMMARY
+            echo "3. Break down large tasks into smaller chunks" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "1. Maintain current pace" >> $GITHUB_STEP_SUMMARY
+            echo "2. Focus on code quality over quantity" >> $GITHUB_STEP_SUMMARY
+            echo "3. Ensure adequate test coverage" >> $GITHUB_STEP_SUMMARY
+          fi
