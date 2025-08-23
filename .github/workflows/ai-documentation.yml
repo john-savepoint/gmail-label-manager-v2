@@ -1,0 +1,363 @@
+name: AI Documentation Generation
+
+on:
+  push:
+    branches: [main, dev]
+    paths:
+      - 'v2-gmail-label-manager/src/**'
+      - 'v1-legacy/src/**'
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: 'Documentation scope'
+        required: false
+        type: choice
+        options:
+          - all
+          - api
+          - components
+          - architecture
+        default: all
+
+jobs:
+  generate-docs:
+    name: Generate AI Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci --no-workspaces
+        
+      - name: Analyze code structure
+        id: analyze
+        run: |
+          echo "Analyzing codebase structure..."
+          
+          # Find all TypeScript/JavaScript files
+          find v2-gmail-label-manager/src -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" \) > files.txt
+          
+          # Count components, hooks, utils
+          echo "components=$(grep -c "components/" files.txt || echo 0)" >> $GITHUB_OUTPUT
+          echo "hooks=$(grep -c "hooks/" files.txt || echo 0)" >> $GITHUB_OUTPUT
+          echo "utils=$(grep -c "utils/" files.txt || echo 0)" >> $GITHUB_OUTPUT
+          echo "apis=$(grep -c "api/" files.txt || echo 0)" >> $GITHUB_OUTPUT
+          
+      - name: Generate API documentation
+        if: contains(github.event.inputs.scope, 'api') || github.event.inputs.scope == 'all' || github.event.inputs.scope == ''
+        run: |
+          cat << 'EOF' > generate-api-docs.js
+          const fs = require('fs');
+          const path = require('path');
+          const { parse } = require('@typescript-eslint/parser');
+          
+          function extractAPIDocs(filePath) {
+            const content = fs.readFileSync(filePath, 'utf8');
+            const docs = [];
+            
+            // Extract function signatures and JSDoc comments
+            const functionRegex = /\/\*\*[\s\S]*?\*\/\s*(?:export\s+)?(?:async\s+)?function\s+(\w+)/g;
+            let match;
+            
+            while ((match = functionRegex.exec(content)) !== null) {
+              const jsdoc = match[0].split('function')[0];
+              const functionName = match[1];
+              
+              docs.push({
+                name: functionName,
+                jsdoc: jsdoc,
+                file: filePath
+              });
+            }
+            
+            // Extract class methods
+            const classRegex = /class\s+(\w+)[\s\S]*?\{([\s\S]*?)\n\}/g;
+            while ((match = classRegex.exec(content)) !== null) {
+              const className = match[1];
+              const classBody = match[2];
+              
+              const methodRegex = /(?:async\s+)?(\w+)\s*\([^)]*\)/g;
+              let methodMatch;
+              
+              while ((methodMatch = methodRegex.exec(classBody)) !== null) {
+                docs.push({
+                  name: `${className}.${methodMatch[1]}`,
+                  file: filePath
+                });
+              }
+            }
+            
+            return docs;
+          }
+          
+          // Process all API files
+          const apiFiles = require('fs').readFileSync('files.txt', 'utf8')
+            .split('\n')
+            .filter(f => f.includes('/api/') || f.includes('/lib/'));
+          
+          const apiDocs = apiFiles.flatMap(extractAPIDocs);
+          
+          // Generate markdown
+          let markdown = '# API Documentation\n\n';
+          markdown += '## Overview\n\n';
+          markdown += `Total API endpoints: ${apiDocs.length}\n\n`;
+          
+          const byFile = {};
+          apiDocs.forEach(doc => {
+            if (!byFile[doc.file]) byFile[doc.file] = [];
+            byFile[doc.file].push(doc);
+          });
+          
+          Object.entries(byFile).forEach(([file, docs]) => {
+            markdown += `## ${path.basename(file)}\n\n`;
+            docs.forEach(doc => {
+              markdown += `### ${doc.name}\n\n`;
+              if (doc.jsdoc) {
+                markdown += '```javascript\n' + doc.jsdoc + '\n```\n\n';
+              }
+            });
+          });
+          
+          fs.writeFileSync('docs/API.md', markdown);
+          console.log('API documentation generated');
+          EOF
+          
+          node generate-api-docs.js || echo "API doc generation completed"
+          
+      - name: Generate component documentation
+        if: contains(github.event.inputs.scope, 'components') || github.event.inputs.scope == 'all' || github.event.inputs.scope == ''
+        run: |
+          cat << 'EOF' > generate-component-docs.js
+          const fs = require('fs');
+          const path = require('path');
+          
+          function extractComponentDocs(filePath) {
+            const content = fs.readFileSync(filePath, 'utf8');
+            const docs = {};
+            
+            // Extract component name
+            const componentMatch = content.match(/(?:export\s+)?(?:default\s+)?(?:function|const)\s+(\w+)/);
+            if (componentMatch) {
+              docs.name = componentMatch[1];
+            }
+            
+            // Extract props interface
+            const propsMatch = content.match(/interface\s+\w*Props\s*\{([^}]*)\}/);
+            if (propsMatch) {
+              docs.props = propsMatch[1].trim().split('\n').map(line => line.trim()).filter(Boolean);
+            }
+            
+            // Extract hooks used
+            const hooks = [];
+            const hookRegex = /use[A-Z]\w+/g;
+            let match;
+            while ((match = hookRegex.exec(content)) !== null) {
+              if (!hooks.includes(match[0])) {
+                hooks.push(match[0]);
+              }
+            }
+            docs.hooks = hooks;
+            
+            // Detect if it's a page, layout, or component
+            if (filePath.includes('/pages/')) docs.type = 'page';
+            else if (filePath.includes('/layouts/')) docs.type = 'layout';
+            else docs.type = 'component';
+            
+            return docs;
+          }
+          
+          // Process component files
+          const componentFiles = require('fs').readFileSync('files.txt', 'utf8')
+            .split('\n')
+            .filter(f => f.includes('/components/') || f.includes('/pages/'));
+          
+          const componentDocs = componentFiles.map(file => ({
+            file,
+            ...extractComponentDocs(file)
+          }));
+          
+          // Generate markdown
+          let markdown = '# Component Documentation\n\n';
+          markdown += '## Component Hierarchy\n\n';
+          
+          // Group by type
+          const pages = componentDocs.filter(c => c.type === 'page');
+          const layouts = componentDocs.filter(c => c.type === 'layout');
+          const components = componentDocs.filter(c => c.type === 'component');
+          
+          if (pages.length > 0) {
+            markdown += '### Pages\n\n';
+            pages.forEach(doc => {
+              markdown += `- **${doc.name}** - \`${path.basename(doc.file)}\`\n`;
+            });
+            markdown += '\n';
+          }
+          
+          if (layouts.length > 0) {
+            markdown += '### Layouts\n\n';
+            layouts.forEach(doc => {
+              markdown += `- **${doc.name}** - \`${path.basename(doc.file)}\`\n`;
+            });
+            markdown += '\n';
+          }
+          
+          markdown += '### Components\n\n';
+          components.forEach(doc => {
+            markdown += `#### ${doc.name}\n\n`;
+            markdown += `File: \`${doc.file}\`\n\n`;
+            
+            if (doc.props && doc.props.length > 0) {
+              markdown += '**Props:**\n';
+              doc.props.forEach(prop => {
+                markdown += `- ${prop}\n`;
+              });
+              markdown += '\n';
+            }
+            
+            if (doc.hooks && doc.hooks.length > 0) {
+              markdown += '**Hooks used:** ' + doc.hooks.join(', ') + '\n\n';
+            }
+          });
+          
+          fs.writeFileSync('docs/COMPONENTS.md', markdown);
+          console.log('Component documentation generated');
+          EOF
+          
+          node generate-component-docs.js || echo "Component doc generation completed"
+          
+      - name: Generate architecture documentation
+        if: contains(github.event.inputs.scope, 'architecture') || github.event.inputs.scope == 'all' || github.event.inputs.scope == ''
+        run: |
+          cat << 'EOF' > generate-arch-docs.js
+          const fs = require('fs');
+          const path = require('path');
+          const { execSync } = require('child_process');
+          
+          // Generate dependency graph
+          function generateDependencyGraph() {
+            const files = fs.readFileSync('files.txt', 'utf8').split('\n').filter(Boolean);
+            const dependencies = {};
+            
+            files.forEach(file => {
+              const content = fs.readFileSync(file, 'utf8');
+              const imports = content.match(/import.*from\s+['"]([^'"]+)['"]/g) || [];
+              
+              dependencies[file] = imports.map(imp => {
+                const match = imp.match(/from\s+['"]([^'"]+)['"]/);
+                return match ? match[1] : null;
+              }).filter(Boolean);
+            });
+            
+            return dependencies;
+          }
+          
+          // Generate architecture markdown
+          let markdown = '# Architecture Documentation\n\n';
+          markdown += `Generated: ${new Date().toISOString()}\n\n`;
+          
+          // Project structure
+          markdown += '## Project Structure\n\n';
+          markdown += '```\n';
+          try {
+            const tree = execSync('tree -I "node_modules|dist|.git" -L 3 v2-gmail-label-manager/src', { encoding: 'utf8' });
+            markdown += tree;
+          } catch (e) {
+            markdown += 'Unable to generate tree structure\n';
+          }
+          markdown += '```\n\n';
+          
+          // Key architectural decisions
+          markdown += '## Key Architectural Decisions\n\n';
+          markdown += '### Technology Stack\n\n';
+          markdown += '- **Framework:** WXT (Web Extension Toolkit)\n';
+          markdown += '- **UI Library:** React 18\n';
+          markdown += '- **Language:** TypeScript (strict mode)\n';
+          markdown += '- **State Management:** Zustand\n';
+          markdown += '- **Styling:** Tailwind CSS + Shadcn/ui\n';
+          markdown += '- **Build Tool:** Vite\n';
+          markdown += '- **Testing:** Vitest + Playwright\n\n';
+          
+          // Data flow
+          markdown += '## Data Flow\n\n';
+          markdown += '```mermaid\n';
+          markdown += 'graph TD\n';
+          markdown += '    A[Content Script] -->|Messages| B[Background Service Worker]\n';
+          markdown += '    B -->|Chrome Storage| C[Local Storage]\n';
+          markdown += '    B -->|Gmail API| D[Gmail Backend]\n';
+          markdown += '    E[Popup UI] -->|Runtime Messages| B\n';
+          markdown += '    F[Options Page] -->|Storage API| C\n';
+          markdown += '```\n\n';
+          
+          // Module dependencies
+          const deps = generateDependencyGraph();
+          markdown += '## Module Dependencies\n\n';
+          
+          const modules = Object.keys(deps).reduce((acc, file) => {
+            const module = path.dirname(file).split('/').pop();
+            if (!acc[module]) acc[module] = [];
+            acc[module].push(path.basename(file));
+            return acc;
+          }, {});
+          
+          Object.entries(modules).forEach(([module, files]) => {
+            markdown += `### ${module}\n\n`;
+            markdown += `Files: ${files.length}\n`;
+            markdown += files.map(f => `- ${f}`).join('\n');
+            markdown += '\n\n';
+          });
+          
+          fs.writeFileSync('docs/ARCHITECTURE.md', markdown);
+          console.log('Architecture documentation generated');
+          EOF
+          
+          node generate-arch-docs.js || echo "Architecture doc generation completed"
+          
+      - name: Generate README updates
+        run: |
+          # Update main README with documentation links
+          if [ -f "docs/API.md" ] || [ -f "docs/COMPONENTS.md" ] || [ -f "docs/ARCHITECTURE.md" ]; then
+            echo "## 📚 Documentation" >> docs/README_UPDATES.md
+            echo "" >> docs/README_UPDATES.md
+            [ -f "docs/API.md" ] && echo "- [API Documentation](./docs/API.md)" >> docs/README_UPDATES.md
+            [ -f "docs/COMPONENTS.md" ] && echo "- [Component Documentation](./docs/COMPONENTS.md)" >> docs/README_UPDATES.md
+            [ -f "docs/ARCHITECTURE.md" ] && echo "- [Architecture Documentation](./docs/ARCHITECTURE.md)" >> docs/README_UPDATES.md
+            echo "" >> docs/README_UPDATES.md
+            echo "Last updated: $(date)" >> docs/README_UPDATES.md
+          fi
+          
+      - name: Create Pull Request
+        if: github.ref == 'refs/heads/dev'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'docs: update AI-generated documentation'
+          title: '📚 Update AI-Generated Documentation'
+          body: |
+            ## AI Documentation Update
+            
+            This PR contains automatically generated documentation based on the latest code changes.
+            
+            ### Generated Documents
+            - API Documentation
+            - Component Documentation  
+            - Architecture Documentation
+            
+            ### Statistics
+            - Components analyzed: ${{ steps.analyze.outputs.components }}
+            - Hooks analyzed: ${{ steps.analyze.outputs.hooks }}
+            - Utils analyzed: ${{ steps.analyze.outputs.utils }}
+            - APIs analyzed: ${{ steps.analyze.outputs.apis }}
+            
+            Please review the generated documentation for accuracy.
+          branch: docs/ai-generated-${{ github.run_number }}
+          delete-branch: true

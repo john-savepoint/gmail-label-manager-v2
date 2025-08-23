@@ -26,6 +26,9 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\" --ignore-path .gitignore",
     "ai:commit": "node scripts/ai-commit.js",
     "ai:pr": "node scripts/ai-pr.js",
+    "ai:test": "node scripts/ai-test-generator.js",
+    "ai:review": "node scripts/ai-pr-review.js",
+    "ai:merge": "node scripts/ai-merge-helper.js",
     "sprint:report": "node scripts/sprint-analytics.js",
     "deps:check": "npm audit --workspaces",
     "deps:update": "npm update --workspaces"
