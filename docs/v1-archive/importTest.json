@@ -1,0 +1,544 @@
+{
+  "version": "1.0",
+  "exportDate": "2025-06-01T17:00:43.000Z",
+  "labels": [
+    {
+      "name": "00_ActionRequired",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#db4437"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "01_WaitingFor",
+      "color": {
+        "textColor": "#000000",
+        "backgroundColor": "#f4b400"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#4285f4"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Family & Friends",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Family & Friends/Events_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Health & Wellness",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Health & Wellness/Medical",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Health & Wellness/Fitness",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Hobbies",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Hobbies/DJing",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Hobbies/Gaming",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Hobbies/Music_General",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Residences_Past",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Legal_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Pets",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#0f9d58"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Tenants_Current",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Tenants_Prospective",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/RealEstateAgent",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Strata & BuildingMgmt",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Neighbours",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Maintenance & Repairs",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Finance_HelenSt",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#ab47bc"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Clients",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Projects",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/BusinessOps",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/BusinessOps/Admin & Legal_SavePoint",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/BusinessOps/Accounting_SavePoint",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/BusinessOps/Marketing_SavePoint",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint/AccountingSoftware",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint/CRM",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint/ProjectManagement",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint/Hosting_Dev",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Networking_Professional",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/IndustryNews_Tech",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#795548"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_SoleTrader",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_Partnerships",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_HospitalityWork",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_ConstructionWork",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_SideGigs",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_SideGigs/UberDriver",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_SideGigs/PharmaTrials_MarketTesting",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_EventManagementWork",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/JobSearch_Past",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#009688"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Banking",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Bills & Utilities_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Investments_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Investments_Personal/Crypto",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Investments_Personal/Shares & Funds",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Investments_Personal/Superannuation",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Shopping & Orders",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Shopping & Orders/Receipts_General",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Shopping & Orders/BNPL",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Subscriptions_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Taxes & Accounting_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices/Centrelink",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices/ChildSupport",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices/ServiceNSW",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices/E-Toll",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Travel_Financials",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#3f51b5"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/FormalEducation",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/ProgrammingStudies",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/LanguageLearning",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/LanguageLearning/Japanese",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/Skills_Software",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/Certifications",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#e91e63"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal/Trips",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal/Bookings_General",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal/Visas",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal/LoyaltyPrograms",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "80_Reference_General",
+      "color": {
+        "textColor": "#000000",
+        "backgroundColor": "#9e9e9e"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "90_NewslettersToReview_Personal",
+      "color": {
+        "textColor": "#000000",
+        "backgroundColor": "#81d4fa"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "91_NewslettersToReview_Professional",
+      "color": {
+        "textColor": "#000000",
+        "backgroundColor": "#a5d6a7"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "99_zArchive",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#616161"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    }
+  ]
+}

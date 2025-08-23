@@ -1,0 +1,1682 @@
+{
+  "version": "1.0",
+  "exportDate": "2025-06-03T08:01:13.679Z",
+  "labels": [
+    {
+      "name": "[Gmail]/Trash/Fairwork Ombudsman",
+      "type": "user"
+    },
+    {
+      "name": "@SaneCC543434545",
+      "color": {
+        "textColor": "#0d3b44",
+        "backgroundColor": "#98d7e4"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "@SaneLater",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#cc3a21"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "@SaneLater/Top",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#cc3a21"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "@SaneNews",
+      "type": "user"
+    },
+    {
+      "name": "@SaneNextMonth",
+      "type": "user"
+    },
+    {
+      "name": "@SaneNextMonth/test",
+      "type": "user"
+    },
+    {
+      "name": "@SaneNextMonth/test/sub test",
+      "type": "user"
+    },
+    {
+      "name": "@SaneNextWeek",
+      "type": "user"
+    },
+    {
+      "name": "@SaneNoReplies",
+      "type": "user"
+    },
+    {
+      "name": "@SaneTomorrow",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Family & Friends",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Family & Friends/Events_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Health & Wellness",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Health & Wellness/Fitness",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Health & Wellness/Medical",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Hobbies",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Hobbies/DJing",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Hobbies/Gaming",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Hobbies/Music_General",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Legal_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Pets",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "10_Personal/Residences_Past",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Finance_HelenSt",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Maintenance & Repairs",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Neighbours",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/RealEstateAgent",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Strata & BuildingMgmt",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Tenants_Current",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "20_HelenSt_Subleasing/Tenants_Prospective",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "247Webbilling",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/BusinessOps",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/BusinessOps/Accounting_SavePoint",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/BusinessOps/Admin & Legal_SavePoint",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/BusinessOps/Marketing_SavePoint",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Clients",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/IndustryNews_Tech",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Networking_Professional",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Projects",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint/AccountingSoftware",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint/CRM",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint/Hosting_Dev",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "30_Professional_Current (Save Point Pty Ltd)/Tools_SavePoint/ProjectManagement",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_ConstructionWork",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_EventManagementWork",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_HospitalityWork",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_Partnerships",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_SideGigs",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_SideGigs/PharmaTrials_MarketTesting",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_SideGigs/UberDriver",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/Archive_SoleTrader",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "40_Professional_PastVentures & Career/JobSearch_Past",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "4Bars",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Banking",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Bills & Utilities_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices/Centrelink",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices/ChildSupport",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices/E-Toll",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/GovernmentServices/ServiceNSW",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Investments_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Investments_Personal/Crypto",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Investments_Personal/Shares & Funds",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Investments_Personal/Superannuation",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Shopping & Orders",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Shopping & Orders/BNPL",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Shopping & Orders/Receipts_General",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Subscriptions_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Taxes & Accounting_Personal",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "50_Finance_Personal/Travel_Financials",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/Certifications",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/FormalEducation",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/LanguageLearning",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/LanguageLearning/Japanese",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/ProgrammingStudies",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "60_Learning & Development/Skills_Software",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "7-Eleven",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal/Bookings_General",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal/LoyaltyPrograms",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal/Trips",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "70_Travel_Personal/Visas",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "9 Degrees",
+      "type": "user"
+    },
+    {
+      "name": "99 Bikes",
+      "type": "user"
+    },
+    {
+      "name": "AAMI",
+      "type": "user"
+    },
+    {
+      "name": "Acorns",
+      "type": "user"
+    },
+    {
+      "name": "Adobe",
+      "type": "user"
+    },
+    {
+      "name": "Afterpay",
+      "type": "user"
+    },
+    {
+      "name": "AGL",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "AHM Health Insurance",
+      "type": "user"
+    },
+    {
+      "name": "Airbnb",
+      "type": "user"
+    },
+    {
+      "name": "Airtasker",
+      "type": "user"
+    },
+    {
+      "name": "Ako Chan",
+      "type": "user"
+    },
+    {
+      "name": "AliExpress",
+      "type": "user"
+    },
+    {
+      "name": "Amazon",
+      "type": "user"
+    },
+    {
+      "name": "Amazon/Prime",
+      "type": "user"
+    },
+    {
+      "name": "Amnesty International",
+      "type": "user"
+    },
+    {
+      "name": "Amway",
+      "type": "user"
+    },
+    {
+      "name": "AnimeLab",
+      "type": "user"
+    },
+    {
+      "name": "Anytime Fitness",
+      "type": "user"
+    },
+    {
+      "name": "Apple",
+      "type": "user"
+    },
+    {
+      "name": "Asana",
+      "type": "user"
+    },
+    {
+      "name": "Asset Panda",
+      "type": "user"
+    },
+    {
+      "name": "ATO",
+      "type": "user"
+    },
+    {
+      "name": "Australia Post",
+      "type": "user"
+    },
+    {
+      "name": "Australia Post/Australia Post",
+      "type": "user"
+    },
+    {
+      "name": "Australia Post/Australia Post Notifications",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Banking",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Banking/Commbank",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Banking/Commbank/Netbank Notificaiton",
+      "type": "user"
+    },
+    {
+      "name": "Barn2",
+      "type": "user"
+    },
+    {
+      "name": "Beatport",
+      "type": "user"
+    },
+    {
+      "name": "Berlin Trip",
+      "type": "user"
+    },
+    {
+      "name": "Bills",
+      "type": "user"
+    },
+    {
+      "name": "Bitrix24",
+      "type": "user"
+    },
+    {
+      "name": "Blue Hotel Sydney",
+      "type": "user"
+    },
+    {
+      "name": "BoldSign",
+      "type": "user"
+    },
+    {
+      "name": "CarSales",
+      "type": "user"
+    },
+    {
+      "name": "Catch",
+      "type": "user"
+    },
+    {
+      "name": "CATEGORY_FORUMS",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "system"
+    },
+    {
+      "name": "CATEGORY_PERSONAL",
+      "type": "system"
+    },
+    {
+      "name": "CATEGORY_PROMOTIONS",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "system"
+    },
+    {
+      "name": "CATEGORY_SOCIAL",
+      "type": "system"
+    },
+    {
+      "name": "CATEGORY_UPDATES",
+      "type": "system"
+    },
+    {
+      "name": "CHAT",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "hide",
+      "type": "system"
+    },
+    {
+      "name": "Chemist Warehouse",
+      "type": "user"
+    },
+    {
+      "name": "Chiropractic Central",
+      "type": "user"
+    },
+    {
+      "name": "Classifieds Communications",
+      "type": "user"
+    },
+    {
+      "name": "Click Frenzy",
+      "type": "user"
+    },
+    {
+      "name": "Clickup",
+      "type": "user"
+    },
+    {
+      "name": "Closed",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#3c78d8"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Cloudways",
+      "type": "user"
+    },
+    {
+      "name": "Coinbase",
+      "type": "user"
+    },
+    {
+      "name": "Commonwealth Bank",
+      "type": "user"
+    },
+    {
+      "name": "CompTIA",
+      "type": "user"
+    },
+    {
+      "name": "Consumers",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Conversation History",
+      "type": "user"
+    },
+    {
+      "name": "Couriers Please",
+      "type": "user"
+    },
+    {
+      "name": "Crazy Domains",
+      "type": "user"
+    },
+    {
+      "name": "Crypto",
+      "type": "user"
+    },
+    {
+      "name": "Crypto/Swyftx",
+      "type": "user"
+    },
+    {
+      "name": "Cushn Soft",
+      "type": "user"
+    },
+    {
+      "name": "Dad",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Dad/Dad",
+      "type": "user"
+    },
+    {
+      "name": "Dashlane",
+      "type": "user"
+    },
+    {
+      "name": "Deliveroo",
+      "type": "user"
+    },
+    {
+      "name": "Denon DJ",
+      "type": "user"
+    },
+    {
+      "name": "Deputy.com",
+      "type": "user"
+    },
+    {
+      "name": "DeviantArt",
+      "type": "user"
+    },
+    {
+      "name": "Dewalt",
+      "type": "user"
+    },
+    {
+      "name": "DHS",
+      "type": "user"
+    },
+    {
+      "name": "Didi",
+      "type": "user"
+    },
+    {
+      "name": "Digital Surge",
+      "type": "user"
+    },
+    {
+      "name": "Disputes",
+      "type": "user"
+    },
+    {
+      "name": "Disputes/Dell",
+      "type": "user"
+    },
+    {
+      "name": "Disputes/Gumtree",
+      "type": "user"
+    },
+    {
+      "name": "Disputes/Gumtree/Anytime Fitness",
+      "type": "user"
+    },
+    {
+      "name": "Disputes/Indiegogo",
+      "type": "user"
+    },
+    {
+      "name": "Disputes/Lenovo",
+      "type": "user"
+    },
+    {
+      "name": "Domino's",
+      "type": "user"
+    },
+    {
+      "name": "Dossier",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "DRAFT",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "hide",
+      "type": "system"
+    },
+    {
+      "name": "Dropbox",
+      "type": "user"
+    },
+    {
+      "name": "E-Toll",
+      "type": "user"
+    },
+    {
+      "name": "eBay",
+      "type": "user"
+    },
+    {
+      "name": "Education",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "EMail List Test",
+      "type": "user"
+    },
+    {
+      "name": "Epic Games",
+      "type": "user"
+    },
+    {
+      "name": "Evolution Lounge Bar",
+      "type": "user"
+    },
+    {
+      "name": "Facebook",
+      "type": "user"
+    },
+    {
+      "name": "Fair Work Ombudsman",
+      "type": "user"
+    },
+    {
+      "name": "Feedback",
+      "type": "user"
+    },
+    {
+      "name": "Finance",
+      "type": "user"
+    },
+    {
+      "name": "Flatmates",
+      "type": "user"
+    },
+    {
+      "name": "Food",
+      "type": "user"
+    },
+    {
+      "name": "Footlogics",
+      "type": "user"
+    },
+    {
+      "name": "Forsythe Recruitment",
+      "type": "user"
+    },
+    {
+      "name": "Freight",
+      "type": "user"
+    },
+    {
+      "name": "Gaming",
+      "type": "user"
+    },
+    {
+      "name": "GitHub",
+      "type": "user"
+    },
+    {
+      "name": "GitHub/GitHub Education",
+      "type": "user"
+    },
+    {
+      "name": "Google",
+      "type": "user"
+    },
+    {
+      "name": "Google/Gsuite",
+      "type": "user"
+    },
+    {
+      "name": "Government",
+      "type": "user"
+    },
+    {
+      "name": "Government/ATO",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Government/Centrelink",
+      "type": "user"
+    },
+    {
+      "name": "Government/Centrelink/Job Search",
+      "type": "user"
+    },
+    {
+      "name": "Grasshopper",
+      "type": "user"
+    },
+    {
+      "name": "Griffith University",
+      "type": "user"
+    },
+    {
+      "name": "Groupon",
+      "type": "user"
+    },
+    {
+      "name": "Gumtree",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "H&R Block",
+      "type": "user"
+    },
+    {
+      "name": "Helen St",
+      "type": "user"
+    },
+    {
+      "name": "Helen St/Laing and Simmons",
+      "type": "user"
+    },
+    {
+      "name": "Hello Cycling",
+      "type": "user"
+    },
+    {
+      "name": "High Skill Training",
+      "type": "user"
+    },
+    {
+      "name": "Hospitality",
+      "type": "user"
+    },
+    {
+      "name": "Hospitality/Argyle",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Hospitality/Merivale",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Hostinger",
+      "type": "user"
+    },
+    {
+      "name": "Hostplus",
+      "type": "user"
+    },
+    {
+      "name": "Hotels Connect",
+      "type": "user"
+    },
+    {
+      "name": "HubSpot, Inc.",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "iDrive",
+      "type": "user"
+    },
+    {
+      "name": "Ikea",
+      "type": "user"
+    },
+    {
+      "name": "IMPORTANT",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "hide",
+      "type": "system"
+    },
+    {
+      "name": "INBOX",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "hide",
+      "type": "system"
+    },
+    {
+      "name": "Inbox Test",
+      "type": "user"
+    },
+    {
+      "name": "Inbox Test/Instagram",
+      "type": "user"
+    },
+    {
+      "name": "InkStation",
+      "type": "user"
+    },
+    {
+      "name": "Insurance",
+      "type": "user"
+    },
+    {
+      "name": "Investments",
+      "type": "user"
+    },
+    {
+      "name": "Investments/Trading",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Investments/Trading/Cryptocurrency",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Investments/Trading/Cryptocurrency/Swyftx",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Japan",
+      "type": "user"
+    },
+    {
+      "name": "Japan/Exemptions",
+      "type": "user"
+    },
+    {
+      "name": "Japan/Visa",
+      "type": "user"
+    },
+    {
+      "name": "Japanese",
+      "type": "user"
+    },
+    {
+      "name": "JB Hi-Fi",
+      "type": "user"
+    },
+    {
+      "name": "Jobs",
+      "type": "user"
+    },
+    {
+      "name": "Jobs/GaijinPot",
+      "type": "user"
+    },
+    {
+      "name": "Jobs/Job Agencies",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Jobs/Jobs Australia",
+      "type": "user"
+    },
+    {
+      "name": "Jobs/Jobs in Japan",
+      "type": "user"
+    },
+    {
+      "name": "Kmart",
+      "type": "user"
+    },
+    {
+      "name": "Lane Cove Aquatic",
+      "type": "user"
+    },
+    {
+      "name": "Langauge Schools",
+      "type": "user"
+    },
+    {
+      "name": "Langauge Schools/AHA",
+      "type": "user"
+    },
+    {
+      "name": "Language",
+      "type": "user"
+    },
+    {
+      "name": "Language/Anki",
+      "type": "user"
+    },
+    {
+      "name": "Language/Japanese",
+      "type": "user"
+    },
+    {
+      "name": "Language/Japanese/Bunpro",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Language/Japanese/Duolingo",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Language/Japanese/WaniKani",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "LastPass",
+      "type": "user"
+    },
+    {
+      "name": "Lay-By",
+      "type": "user"
+    },
+    {
+      "name": "Lay-By/Zip",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Legal Matters",
+      "type": "user"
+    },
+    {
+      "name": "Lenovo",
+      "type": "user"
+    },
+    {
+      "name": "LinkedIn",
+      "type": "user"
+    },
+    {
+      "name": "Liveplan",
+      "type": "user"
+    },
+    {
+      "name": "Localmarriage.com",
+      "type": "user"
+    },
+    {
+      "name": "Logitech",
+      "type": "user"
+    },
+    {
+      "name": "Los Vida",
+      "type": "user"
+    },
+    {
+      "name": "Lottery",
+      "type": "user"
+    },
+    {
+      "name": "Mad Muscles",
+      "type": "user"
+    },
+    {
+      "name": "Map My Customers",
+      "type": "user"
+    },
+    {
+      "name": "Marathon",
+      "type": "user"
+    },
+    {
+      "name": "Marriage",
+      "type": "user"
+    },
+    {
+      "name": "Medical",
+      "type": "user"
+    },
+    {
+      "name": "Meetup",
+      "type": "user"
+    },
+    {
+      "name": "Merivale",
+      "type": "user"
+    },
+    {
+      "name": "Microsoft",
+      "type": "user"
+    },
+    {
+      "name": "MSN_Mail",
+      "type": "user"
+    },
+    {
+      "name": "Music",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Myer",
+      "type": "user"
+    },
+    {
+      "name": "Naughty",
+      "type": "user"
+    },
+    {
+      "name": "Nespresso",
+      "type": "user"
+    },
+    {
+      "name": "New",
+      "type": "user"
+    },
+    {
+      "name": "New/AniList",
+      "type": "user"
+    },
+    {
+      "name": "New/Eurail",
+      "type": "user"
+    },
+    {
+      "name": "New/GoCatch",
+      "type": "user"
+    },
+    {
+      "name": "New/Job Applications",
+      "type": "user"
+    },
+    {
+      "name": "New/Marketing",
+      "type": "user"
+    },
+    {
+      "name": "New/Mitch Wright",
+      "type": "user"
+    },
+    {
+      "name": "New/Procore",
+      "type": "user"
+    },
+    {
+      "name": "New/Volkswagen Jetta",
+      "type": "user"
+    },
+    {
+      "name": "Notes",
+      "type": "user"
+    },
+    {
+      "name": "OBandG",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "OnlyFans",
+      "type": "user"
+    },
+    {
+      "name": "Open",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#cc3a21"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Optus",
+      "type": "user"
+    },
+    {
+      "name": "OUA",
+      "type": "user"
+    },
+    {
+      "name": "OzLotteries",
+      "type": "user"
+    },
+    {
+      "name": "Pastel",
+      "type": "user"
+    },
+    {
+      "name": "Patreon",
+      "type": "user"
+    },
+    {
+      "name": "Payment declined",
+      "type": "user"
+    },
+    {
+      "name": "Personal",
+      "type": "user"
+    },
+    {
+      "name": "Personal/Josh Bucls",
+      "type": "user"
+    },
+    {
+      "name": "Personal/Wayno Bucks",
+      "type": "user"
+    },
+    {
+      "name": "Pets",
+      "type": "user"
+    },
+    {
+      "name": "Playstation",
+      "type": "user"
+    },
+    {
+      "name": "PPW",
+      "type": "user"
+    },
+    {
+      "name": "PPW/EZOffice Inventory",
+      "type": "user"
+    },
+    {
+      "name": "PPW/EZOffice Inventory/Support",
+      "type": "user"
+    },
+    {
+      "name": "Premium IT Recruitment",
+      "type": "user"
+    },
+    {
+      "name": "Product Support",
+      "type": "user"
+    },
+    {
+      "name": "Professional",
+      "type": "user"
+    },
+    {
+      "name": "Professional/Mercari",
+      "type": "user"
+    },
+    {
+      "name": "Programming",
+      "type": "user"
+    },
+    {
+      "name": "Programming/Gaming",
+      "type": "user"
+    },
+    {
+      "name": "Propaganda",
+      "type": "user"
+    },
+    {
+      "name": "Purple Sneakers",
+      "type": "user"
+    },
+    {
+      "name": "Receipts",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "hide",
+      "type": "user"
+    },
+    {
+      "name": "Rekordbox",
+      "type": "user"
+    },
+    {
+      "name": "Replied",
+      "color": {
+        "textColor": "#ffffff",
+        "backgroundColor": "#2a9c68"
+      },
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Revel Systems",
+      "type": "user"
+    },
+    {
+      "name": "RIW",
+      "type": "user"
+    },
+    {
+      "name": "RMIT",
+      "type": "user"
+    },
+    {
+      "name": "RMIT/RMIT Connect",
+      "type": "user"
+    },
+    {
+      "name": "RMIT/RMIT Online",
+      "type": "user"
+    },
+    {
+      "name": "RMIT/Student Success",
+      "type": "user"
+    },
+    {
+      "name": "Salesforce",
+      "type": "user"
+    },
+    {
+      "name": "Samsung",
+      "type": "user"
+    },
+    {
+      "name": "Scientia",
+      "type": "user"
+    },
+    {
+      "name": "Selling stuff",
+      "type": "user"
+    },
+    {
+      "name": "Selling stuff/Melbourne",
+      "type": "user"
+    },
+    {
+      "name": "Selling stuff/Melbourne/Logitech Z5500",
+      "type": "user"
+    },
+    {
+      "name": "SENT",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "hide",
+      "type": "system"
+    },
+    {
+      "name": "ServiceNSW",
+      "type": "user"
+    },
+    {
+      "name": "Sharehouse Double Bay",
+      "type": "user"
+    },
+    {
+      "name": "Shelby Oaks",
+      "type": "user"
+    },
+    {
+      "name": "Silent Disco",
+      "type": "user"
+    },
+    {
+      "name": "Silent Disco King",
+      "type": "user"
+    },
+    {
+      "name": "Simco",
+      "type": "user"
+    },
+    {
+      "name": "Sketchup",
+      "type": "user"
+    },
+    {
+      "name": "Solotel",
+      "type": "user"
+    },
+    {
+      "name": "Spaceship",
+      "type": "user"
+    },
+    {
+      "name": "SPAM",
+      "labelListVisibility": "labelHide",
+      "messageListVisibility": "hide",
+      "type": "system"
+    },
+    {
+      "name": "STAG",
+      "type": "user"
+    },
+    {
+      "name": "Stan",
+      "type": "user"
+    },
+    {
+      "name": "STARRED",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "hide",
+      "type": "system"
+    },
+    {
+      "name": "Streaming",
+      "type": "user"
+    },
+    {
+      "name": "Stripe",
+      "type": "user"
+    },
+    {
+      "name": "Superannuation",
+      "type": "user"
+    },
+    {
+      "name": "Supercheap Auto",
+      "type": "user"
+    },
+    {
+      "name": "Supercheap Auto Orders",
+      "type": "user"
+    },
+    {
+      "name": "Swinbourne University",
+      "type": "user"
+    },
+    {
+      "name": "Sydney Tools",
+      "type": "user"
+    },
+    {
+      "name": "Telstra",
+      "type": "user"
+    },
+    {
+      "name": "The World Bar Pty Ltd",
+      "type": "user"
+    },
+    {
+      "name": "The World Bar Pty Ltd/PokitPal",
+      "type": "user"
+    },
+    {
+      "name": "Tramp",
+      "type": "user"
+    },
+    {
+      "name": "Transport",
+      "type": "user"
+    },
+    {
+      "name": "TRASH",
+      "labelListVisibility": "labelHide",
+      "messageListVisibility": "hide",
+      "type": "system"
+    },
+    {
+      "name": "Travel",
+      "type": "user"
+    },
+    {
+      "name": "Tray",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Trello",
+      "type": "user"
+    },
+    {
+      "name": "Uber",
+      "type": "user"
+    },
+    {
+      "name": "Uber/Disputes",
+      "type": "user"
+    },
+    {
+      "name": "Ubisoft",
+      "type": "user"
+    },
+    {
+      "name": "UNREAD",
+      "type": "system"
+    },
+    {
+      "name": "UrScene",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "US Visa",
+      "type": "user"
+    },
+    {
+      "name": "UTS",
+      "type": "user"
+    },
+    {
+      "name": "Wise",
+      "type": "user"
+    },
+    {
+      "name": "Wix",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "show",
+      "type": "user"
+    },
+    {
+      "name": "Work",
+      "labelListVisibility": "labelShow",
+      "messageListVisibility": "hide",
+      "type": "user"
+    },
+    {
+      "name": "XE Money",
+      "type": "user"
+    },
+    {
+      "name": "Xero",
+      "type": "user"
+    },
+    {
+      "name": "Yoursource",
+      "type": "user"
+    },
+    {
+      "name": "Youtube",
+      "type": "user"
+    },
+    {
+      "name": "YrSource",
+      "type": "user"
+    },
+    {
+      "name": "Zapier",
+      "type": "user"
+    },
+    {
+      "name": "Zendesk",
+      "type": "user"
+    },
+    {
+      "name": "Zip",
+      "type": "user"
+    }
+  ]
+}
