@@ -29,7 +29,16 @@ export default defineConfig({
   publicDir: 'public',
   entrypointsDir: 'entrypoints',
   
-  // Vite configuration for optimized builds
+  // Vite configuration for development and debugging
+  vite: () => ({
+    build: {
+      sourcemap: true,
+    },
+    esbuild: {
+      sourcemap: true,
+    },
+  }),
+  
   // Note: manualChunks is not compatible with WXT's build process
   // WXT handles code splitting automatically
 });
