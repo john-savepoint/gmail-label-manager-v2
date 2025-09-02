@@ -179,3 +179,4 @@ Strict mode is enforced with the following settings:
 ---
 
 **Remember**: Always read `/docs/rebuild/PRD_v2.0.md` before starting any work on this project.
+- we are using linear to project manage our project, alot of context and documentation will reside on linear so please make extensive use of the linear mcp server when creating tasks, when getting tasks please ensure looking at lists of tasks surrounding it to ensure you do not create duplicate tasks if you need to create new tasks or subtasks.

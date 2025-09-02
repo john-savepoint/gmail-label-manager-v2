@@ -29,16 +29,7 @@ export default defineConfig({
   publicDir: 'public',
   entrypointsDir: 'entrypoints',
   
-  vite: () => ({
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom'],
-            'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-select']
-          }
-        }
-      }
-    }
-  })
+  // Vite configuration for optimized builds
+  // Note: manualChunks is not compatible with WXT's build process
+  // WXT handles code splitting automatically
 });
