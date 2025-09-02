@@ -10,7 +10,8 @@
     "build:firefox": "wxt build -b firefox",
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "type-check": "wxt build --mode development --analyze false"
   },
   "keywords": [
     "gmail",
