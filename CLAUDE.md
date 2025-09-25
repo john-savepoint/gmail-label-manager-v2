@@ -1,21 +1,31 @@
 # Gmail Label Manager v2.0 - Project Context
 
 ## Overview
+
 This is the Gmail Label Manager Chrome Extension project undergoing a complete v2.0 rebuild. The project is transitioning from a legacy MVP (v1) to a production-ready commercial product using modern technologies.
 
 ## CRITICAL: Required Reading
+
 **ALL team members and AI agents MUST read the Product Requirements Document first:**
+
 - **PRD Location**: `/docs/rebuild/PRD_v2.0.md`
+
+**As well as these**
+
+- /Volumes/DevSSD/01_Development/Projects/products/gmail/gmailLabelUtilityTool/.sop/05-MASTER-AGENT-SOPS.md
+-
 
 ## Project Structure
 
 ### Current State
+
 - **v1-legacy/**: Original codebase (JavaScript, no TypeScript, 2,651-line components)
 - **v2-gmail-label-manager/**: New WXT-based rebuild (TypeScript, React, modular architecture)
 - **docs/rebuild/**: All v2 planning and requirements documentation
 - **docs/v1-archive/**: Legacy documentation and assets
 
 ### Technology Stack (v2)
+
 - **Framework**: WXT (Web Extension Framework)
 - **Language**: TypeScript with strict mode
 - **UI Framework**: React 18
@@ -26,12 +36,14 @@ This is the Gmail Label Manager Chrome Extension project undergoing a complete v
 - **Package Manager**: npm
 
 ## Key Documentation Files
+
 1. `/docs/rebuild/PRD_v2.0.md` - Product Requirements (READ FIRST)
 2. `/docs/rebuild/TECH_STACK_ANALYSIS.md` - Technology decisions and justifications
 3. `/docs/rebuild/AGILE_TASK_BREAKDOWN.md` - 224 development tasks across 6 sprints
 4. `/docs/rebuild/PROJECT_SUMMARY.md` - Executive summary
 
 ## Linear Project Management
+
 - **Project**: Gmail Label Manager v2.0 - Complete Rebuild
 - **Current Sprint**: Sprint 1 (Foundation & Setup)
 - **Active Branch**: `john/sav-10-task-001-initialize-new-wxt-project-with-typescript-template`
@@ -40,7 +52,9 @@ This is the Gmail Label Manager Chrome Extension project undergoing a complete v
 ## Development Guidelines
 
 ### TypeScript Configuration
+
 Strict mode is enforced with the following settings:
+
 ```json
 {
   "strict": true,
@@ -52,6 +66,7 @@ Strict mode is enforced with the following settings:
 ```
 
 ### Code Organization
+
 - Use feature-based folder structure
 - Keep components under 300 lines
 - Implement proper error boundaries
@@ -59,6 +74,7 @@ Strict mode is enforced with the following settings:
 - No "any" types - properly type everything
 
 ### Gmail API Integration
+
 - OAuth 2.0 with PKCE via Chrome Identity API
 - Rate limit: 250 units/second
 - Required scopes:
@@ -129,6 +145,7 @@ Strict mode is enforced with the following settings:
 ## Key Features (v2.0)
 
 ### Core Features
+
 1. **Label Management**: CRUD operations, bulk actions, color management
 2. **Hierarchical Organization**: Nested labels with tree view
 3. **Smart Search**: Real-time filtering and highlighting
@@ -136,6 +153,7 @@ Strict mode is enforced with the following settings:
 5. **Undo/Redo**: Action history management
 
 ### Premium Features (Subscription Model)
+
 - Advanced automation rules
 - Multi-account support
 - Team collaboration
@@ -143,6 +161,7 @@ Strict mode is enforced with the following settings:
 - Priority support
 
 ## Performance Targets
+
 - Initial load: < 300ms
 - Label operations: < 100ms
 - Search response: < 50ms
@@ -151,6 +170,7 @@ Strict mode is enforced with the following settings:
 ## Important Notes
 
 ### For New Development
+
 1. Always check Linear for task assignments and status
 2. Follow the sprint plan in AGILE_TASK_BREAKDOWN.md
 3. Update Linear issues as work progresses
@@ -158,6 +178,7 @@ Strict mode is enforced with the following settings:
 5. Test across Chrome, Edge, and Brave browsers
 
 ### Known Issues from v1
+
 - Massive component files (2,651 lines)
 - No TypeScript type safety
 - No automated testing
@@ -165,6 +186,7 @@ Strict mode is enforced with the following settings:
 - Bundle size too large (2.5MB)
 
 ### v2 Solutions
+
 - Modular architecture with small, focused components
 - Full TypeScript with strict mode
 - Comprehensive test coverage
@@ -172,6 +194,7 @@ Strict mode is enforced with the following settings:
 - Optimized bundle with code splitting
 
 ## Contact & Resources
+
 - **Linear Project**: [Gmail Label Manager v2.0](https://linear.app/save-point-au/project/gmail-label-manager-v20-complete-rebuild-f3b41cfa5aab)
 - **Repository**: This repository
 - **Documentation**: See `/docs/rebuild/` directory
@@ -179,4 +202,5 @@ Strict mode is enforced with the following settings:
 ---
 
 **Remember**: Always read `/docs/rebuild/PRD_v2.0.md` before starting any work on this project.
+
 - we are using linear to project manage our project, alot of context and documentation will reside on linear so please make extensive use of the linear mcp server when creating tasks, when getting tasks please ensure looking at lists of tasks surrounding it to ensure you do not create duplicate tasks if you need to create new tasks or subtasks.

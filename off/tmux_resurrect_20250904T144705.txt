@@ -1,0 +1,7 @@
+pane	_tmux	1	1	:*	1	✳ Undo Changes	:/Users/johnzealand-doyle/.tmux	1	node	:claude  
+pane	_tmux	2	0	:-	1	Johns-Mac-mini.local	:/Volumes/DevSSD/01_Development/Projects/products/gmail/gmailLabelUtilityTool	1	zsh	:
+pane	ai_methodologies	1	1	:*	1	✳ Project Path	:/Volumes/DevSSD/01_Development/Resources/ai_methodologies	1	node	:claude  
+window	_tmux	1	:claude-217aecbc	1	:*	af41,134x50,0,0,4	off
+window	_tmux	2	:zsh	0	:-	af46,134x50,0,0,9	:
+window	ai_methodologies	1	:claude-27376109	1	:*	af3d,134x50,0,0,0	off
+state	_tmux	

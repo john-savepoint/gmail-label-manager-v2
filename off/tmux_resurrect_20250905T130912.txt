@@ -1,0 +1,17 @@
+pane	MCP Server installation	1	1	:*	1	✳ Server List	:/Volumes/DevSSD/01_Development/Resources/mcp_servers/MCP\ Server installation	1	node	:claude  
+pane	_claude	1	1	:*	1	✳ Status Line	:/Users/johnzealand-doyle/.claude	1	node	:claude  
+pane	_tmux	1	1	:*	1	✳ Shell Configuration Error	:/Users/johnzealand-doyle/.tmux	1	node	:claude  
+pane	ai_methodologies	1	1	:*	1	✳ Grep Tool	:/Volumes/DevSSD/01_Development/Resources/ai_methodologies	1	node	:claude  
+pane	archon	1	1	:*	1	✳ Archon Installation	:/Volumes/DevSSD/01_Development/Resources/mcp_servers/MCP\ Server installation/archon	1	node	:claude  
+pane	background_remover	1	1	:*	1	✳ GitHub Install	:/Volumes/DevSSD/01_Development/Resources/background_remover	1	zsh	:claude  
+pane	gmailLabelUtilityTool	1	1	:*	1	✳ Image Generation	:/Volumes/DevSSD/01_Development/Projects/products/gmail/gmailLabelUtilityTool	1	node	:claude  
+pane	n8n-mcp	1	1	:*	1	✳ Task Initiation	:/Volumes/DevSSD/01_Development/Resources/mcp_servers/MCP\ Server installation/n8n-mcp	1	node	:claude  
+window	MCP Server installation	1	:claude-f84369fa	1	:*	af43,134x50,0,0,6	off
+window	_claude	1	:claude-9f87de7a	1	:*	af44,134x50,0,0,7	off
+window	_tmux	1	:claude-89addf60	1	:*	af3e,134x50,0,0,1	off
+window	ai_methodologies	1	:claude-5754579c	1	:*	af3d,134x50,0,0,0	off
+window	archon	1	:claude-8c1f476f	1	:*	af42,134x50,0,0,5	off
+window	background_remover	1	:claude-cb34fb30	1	:*	af45,134x50,0,0,8	off
+window	gmailLabelUtilityTool	1	:claude-22c9e6b4	1	:*	b080,161x60,0,0,3	off
+window	n8n-mcp	1	:claude-f8a7d3cd	1	:*	af41,134x50,0,0,4	off
+state	background_remover	
